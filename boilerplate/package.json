@@ -1,0 +1,61 @@
+{
+  "name": "chataigpt-cms-backend",
+  "version": "1.0.0",
+  "description": "chataigpt的后台管理系统后端代码",
+  "private": true,
+  "egg": {
+    "declarations": true
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "egg": "^3.17.5",
+    "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
+    "egg-mongoose": "^4.0.0",
+    "egg-router-plus": "^2.0.0",
+    "egg-scripts": "2",
+    "egg-validate": "^2.0.2",
+    "node-localstorage": "^2.2.1",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "egg-bin": "6",
+    "egg-mock": "5",
+    "eslint": "^8",
+    "eslint-config-egg": "^12",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.0.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "start": "egg-scripts start --daemon --title=egg-server-chataigpt-cms-backend",
+    "stop": "egg-scripts stop --title=egg-server-chataigpt-cms-backend",
+    "dev": "egg-bin dev",
+    "test": "npm run lint -- --fix && npm run test:local",
+    "test:local": "egg-bin test",
+    "cov": "egg-bin cov",
+    "lint": "eslint .",
+    "ci": "npm run lint && npm run cov",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "lxw",
+  "license": "MIT"
+}

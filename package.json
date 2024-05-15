@@ -1,0 +1,27 @@
+{
+  "name": "egg-boilerplate-rest",
+  "version": "1.0.0",
+  "description": "boilerplate for egg provide restful api",
+  "scripts": {
+    "lint": "eslint . --resolve-plugins-relative-to .",
+    "test": "npm run lint -- --fix && npm run test-boilerplate",
+    "ci": "npm run lint && npm run ci-boilerplate",
+    "test-boilerplate": "npm run build && npm run install-deps && cd dist && npm test",
+    "ci-boilerplate": "npm run build && npm run install-deps && cd dist && npm run ci",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && egg-init dist --force --silent --template=./",
+    "install-deps": "cd dist && npm i"
+  },
+  "homepage": "",
+  "bugs": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "lxw <1143167344@qq.com>",
+  "devDependencies": {
+    "egg-init": "^3.0.2",
+    "eslint": "^8.34.0",
+    "eslint-config-egg": "13"
+  }
+}
