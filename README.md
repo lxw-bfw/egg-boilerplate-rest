@@ -11,7 +11,7 @@
 
 ```bash
 npm i -g egg-init
-egg-init --type simple showcase
+egg-init --type rest showcase
 cd showcase
 npm i
 npm run dev
