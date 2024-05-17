@@ -1,24 +1,21 @@
 'use strict';
+const { getStorage } = require('../utils/baseLStorage.js');
 const RESULT = require('../utils/responeResult.js');
-let localStorage = null;
+
 const forbidTokenListPath = process.env.FORBIDTOKEN_STORAGE_PATH;
+let localStorage = null;
 try {
-  const LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage(
-    `../localStoreData/${forbidTokenListPath}.js`,
-  );
+  localStorage = getStorage(forbidTokenListPath);
 } catch (error) {
   localStorage = null;
-  console.error('node-localstorage读取token黑名单列表错误', error);
+  console.error('读取黑名单失败', error);
 }
 
 module.exports = options => {
   return async function loginInterceptor(ctx, next) {
     const { method, path } = ctx.request;
     const whitelist = options.whitelist;
-    console.log('请求方法', method);
-    console.log('请求路径', path);
-    console.log('放行白名单', whitelist);
+    
 
     const shouldSkip = whitelist.some(item => {
       if (item.method) {
@@ -51,9 +48,7 @@ module.exports = options => {
       }
       return path === item.path;
     });
-    console.log('是否可以放行', shouldSkip);
     if (shouldSkip) {
-      console.log('可以放行');
       await next();
       return;
     }
@@ -70,7 +65,7 @@ module.exports = options => {
     }
     let decode = '';
     if (token) {
-      console.log('当前token', token);
+      console.log('当前access token', token);
       try {
         let forbidTokenList = localStorage.getItem('forbidTokens');
         forbidTokenList = forbidTokenList ? JSON.parse(forbidTokenList) : [];
@@ -81,10 +76,11 @@ module.exports = options => {
           return;
         }
       } catch (error) {
+        // 跳过黑名单机制继续
         ctx.logger.error('node-localstorage-error', error);
       }
       try {
-        // 解码token
+        // 解码access token
         decode = ctx.app.jwt.verify(token, options.secret);
 
         // 判断是否解码

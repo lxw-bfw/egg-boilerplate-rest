@@ -41,6 +41,10 @@ npm stop
 `router.js`，路由配置，提供restful api
 `controller/auth.js`，提供`jwt`登录样例
 
+### 登录业务
+
+#### 内置jwt登录实现，优化和提供无感刷新token登录机制、登录权限校验中间件
+
 ## 工程
 
 待写...

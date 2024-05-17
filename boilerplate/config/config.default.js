@@ -37,7 +37,7 @@ module.exports = appInfo => {
       },
     ],
     match: new RegExp(
-      `^(?!\/${projectName}\/auth\/(register|loginByPassowrd|loginBySMSCode|sendSMSCode|getRandomSlideVerify|validateSliderCaptcha))`,
+      `^(?!\/${projectName}\/auth\/(register|loginByPassowrd|checkToken|refreshCsrfToken|loginBySMSCode|sendSMSCode|getRandomSlideVerify|validateSliderCaptcha))`,
     ),
   };
 

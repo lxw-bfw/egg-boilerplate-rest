@@ -18,6 +18,10 @@ npm run dev
 open http://localhost:7003/eggRestProject
 ```
 
+### 登录业务
+
+#### 内置jwt登录实现，优化和提供无感刷新token登录机制、登录权限校验中间件
+
 ## 其他
 `环境变量支持` `egg-validate支持` `egg-mongoose支持` `egg-jwt支持` `egg-cors支持` `egg-security支持` `自定义资源白名单和登录拦截等中间件` `黑名单token支持` `基于bcryptjs加密`...
 
